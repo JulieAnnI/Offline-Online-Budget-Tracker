@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
   '/icons/icon-512x192.png' 
 ];
 
-const STATIC_CACHE = "static-cache-v1";
+const STATIC_CACHE = "static-cache-v2";
 const RUNTIME_CACHE = "runtime-cache";
 
 // Install
