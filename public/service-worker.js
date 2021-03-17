@@ -13,14 +13,17 @@ const STATIC_CACHE = "static-cache-v1";
 const RUNTIME_CACHE = "runtime-cache";
 
 // Install
-self.addEventListener("install", function (event) {
-  event.waitUntil(
-    caches
-      .open(STATIC_CACHE)
-      .then(cache => cache.addAll(FILES_TO_CACHE))
-      .then(() => self.skipWaiting())
+self.addEventListener("install", function(evt) {
+  evt.waitUntil( 
+    caches.open(STATIC_CACHE).then(cache => { 
+      console.log("Your files were pre-cached successfully!");
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
+
+  self.skipWaiting();
 });
+
 //Activate
 self.addEventListener("activate", event => {
   const currentCaches = [STATIC_CACHE, RUNTIME_CACHE];
