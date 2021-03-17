@@ -15,12 +15,11 @@ const RUNTIME_CACHE = "runtime-cache";
 // Install
 self.addEventListener("install", function(evt) {
   evt.waitUntil( 
-    caches.open(STATIC_CACHE).then(cache => { 
-      console.log("Your files were pre-cached successfully!");
+    caches.open(STATIC_CACHE).then(cache => {  
       return cache.addAll(FILES_TO_CACHE);
     })
   );
-
+  console.log("Your files were pre-cached successfully!");  
   self.skipWaiting();
 });
 
@@ -31,7 +30,6 @@ self.addEventListener("activate", event => {
     caches
       .keys()
       .then(cacheNames => {
-        // return array of cache names that are old to delete
         return cacheNames.filter(
           cacheName => !currentCaches.includes(cacheName)
         );
